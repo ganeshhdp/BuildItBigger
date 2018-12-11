@@ -19,7 +19,6 @@ public class EndpointAsyncTaskTest extends AndroidTestCase{
         } catch (Exception e) {
             fail("Operation timed out");
         }
-
     }
 
 }

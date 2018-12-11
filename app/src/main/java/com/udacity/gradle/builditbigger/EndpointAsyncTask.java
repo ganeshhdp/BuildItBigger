@@ -17,6 +17,7 @@ public class EndpointAsyncTask extends AsyncTask <Void, Void, String>{
     private Context context;
     @Override
     protected String doInBackground(Void... voids) {
+        String joke = null;
         if(myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
@@ -34,12 +35,12 @@ public class EndpointAsyncTask extends AsyncTask <Void, Void, String>{
 
             myApiService = builder.build();
         }
-
-
         try {
-            return myApiService.sayHi("backend").execute().getData();
+            joke =  myApiService.getJoke().execute().getData();
         } catch (IOException e) {
-            return e.getMessage();
+            System.out.println("ganesh in the exception");
+            e.printStackTrace();
         }
+        return joke;
     }
 }
